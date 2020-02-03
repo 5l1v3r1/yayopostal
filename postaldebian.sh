@@ -11,12 +11,12 @@ gem install bundler procodile --no-rdoc --no-ri
 
 # MySQL
 echo 'CREATE DATABASE `postal` CHARSET utf8mb4 COLLATE utf8mb4_unicode_ci;' | mysql -u root
-echo 'GRANT ALL ON `postal`.* TO `postal`@`127.0.0.1` IDENTIFIED BY "pass123";' | mysql -u root
-echo 'GRANT ALL PRIVILEGES ON `postal-%` . * to `postal`@`127.0.0.1`  IDENTIFIED BY "pass123";' | mysql -u root
+echo 'GRANT ALL ON `postal`.* TO `postal`@`127.0.0.1` IDENTIFIED BY "onyeisinadubai@3454";' | mysql -u root
+echo 'GRANT ALL PRIVILEGES ON `postal-%` . * to `postal`@`127.0.0.1`  IDENTIFIED BY "onyeisinadubai@3454";' | mysql -u root
 
 # RabbitMQ
 rabbitmqctl add_vhost /postal
-rabbitmqctl add_user postal pass123
+rabbitmqctl add_user postal onyeisinadubai@3454
 rabbitmqctl set_permissions -p /postal postal ".*" ".*" ".*"
 
 # System prep
