@@ -19,12 +19,6 @@ after installing from postaldebian.sh proceed laka dis
 # Once this is done, you are ready to make your initial user account, just run:
 postal make-user
 
-Add Postal to startup
-# /etc/rc.local
-  #!/bin/sh -e
-  sudo -u postal postal start
-  exit 0
-  
   
 ## Configuring Postal
 Open the file /opt/postal/config/postal.yml and change the entries of the DNS section to the domain name of your choice. Feel free to go through other entries of generic domain names and replace them too. In the example below, the domain name used is just ranvirblog.com feel free to use your domain name with any reasonable sub domain like mail.mydomainname.com
