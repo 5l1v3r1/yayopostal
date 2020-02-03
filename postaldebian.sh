@@ -1,33 +1,33 @@
 #!/bin/bash
 
-apt install -y software-properties-common
-apt install -y ruby2.3 ruby2.3-dev build-essential
-apt install -y mariadb-server default-libmysqlclient-dev
-apt install -y rabbitmq-server
-apt install -y nodejs
-apt install -y git
-apt install -y nginx
-gem install bundler procodile --no-rdoc --no-ri
+sudo apt install -y software-properties-common
+sudo apt install -y ruby2.3 ruby2.3-dev build-essential
+sudo apt install -y mariadb-server default-libmysqlclient-dev
+sudo apt install -y rabbitmq-server
+sudo apt install -y nodejs
+sudo apt install -y git
+sudo apt install -y nginx
+sudo gem install bundler procodile --no-rdoc --no-ri
+
 
 # MySQL
-echo 'CREATE DATABASE `postal` CHARSET utf8mb4 COLLATE utf8mb4_unicode_ci;' | mysql -u root
-echo 'GRANT ALL ON `postal`.* TO `postal`@`127.0.0.1` IDENTIFIED BY "onyeisinadubai@3454";' | mysql -u root
-echo 'GRANT ALL PRIVILEGES ON `postal-%` . * to `postal`@`127.0.0.1`  IDENTIFIED BY "onyeisinadubai@3454";' | mysql -u root
+sudo echo 'CREATE DATABASE `postal` CHARSET utf8mb4 COLLATE utf8mb4_unicode_ci;' | mysql -u root
+sudo echo 'GRANT ALL ON `postal`.* TO `postal`@`127.0.0.1` IDENTIFIED BY "onyeisinadubai@3454";' | mysql -u root
+sudo echo 'GRANT ALL PRIVILEGES ON `postal-%` . * to `postal`@`127.0.0.1`  IDENTIFIED BY "onyeisinadubai@3454";' | mysql -u root
 
 # RabbitMQ
-rabbitmqctl add_vhost /postal
-rabbitmqctl add_user postal onyeisinadubai@3454
-rabbitmqctl set_permissions -p /postal postal ".*" ".*" ".*"
+sudo rabbitmqctl add_vhost /postal
+sudo rabbitmqctl add_user postal onyeisinadubai@3454
+sudo rabbitmqctl set_permissions -p /postal postal ".*" ".*" ".*"
 
 # System prep
-useradd -r -m -d /opt/postal -s /bin/bash postal
-setcap 'cap_net_bind_service=+ep' /usr/bin/ruby2.3
+sudo useradd -r -m -d /opt/postal -s /bin/bash postal
+sudo setcap 'cap_net_bind_service=+ep' /usr/bin/ruby2.3
 
 # Application Setup
 sudo -i -u postal mkdir -p /opt/postal/app
-wget https://postal.atech.media/packages/stable/latest.tgz -O - | sudo -u postal tar zxpv -C /opt/postal/app
-ln -s /opt/postal/app/bin/postal /usr/bin/postal
-postal bundle /opt/postal/vendor/bundle
+wget https://postal.atech.media/packages/stable/latest.tgz -O - | sudo -u postal tar zxpv -C /opt/postal/app ln -s /opt/postal/app/bin/postal /usr/bin/postal
+sudo postal bundle /opt/postal/vendor/bundle
 #Note: installing nokogiri takes 5min in my host
 postal initialize-config
 # Update /opt/postal/config/postal.yml passwords
