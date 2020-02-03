@@ -32,14 +32,14 @@ dns:
  # Specifies the DNS record that you have configured. Refer to the documentation at
  # https://github.com/atech/postal/wiki/Domains-&-DNS-Configuration for further
  # information about these.
- mx_records:
- - mx.ranvirblog.com
- smtp_server_hostname: ranvirblog.com
- spf_include: spf.ranvirblog.com
- return_path: rp.ranvirblog.com
- dkim_identifier: postal
- domain_verify_prefix: postal-verification
- custom_return_path_prefix: psrp
+ ## mx_records:
+ ## - mx.ranvirblog.com
+ ## smtp_server_hostname: ranvirblog.com
+ ## spf_include: spf.ranvirblog.com
+ ## return_path: rp.ranvirblog.com
+ ## dkim_identifier: postal
+ ## domain_verify_prefix: postal-verification
+ ## custom_return_path_prefix: psrp
 ## To access the main interface, add the following DNS records using your DNS provider’s interface.
 
 An A record for subdomain.yourdomain.com
